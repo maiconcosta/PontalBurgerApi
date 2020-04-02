@@ -1,20 +1,19 @@
 const connection = require('../database/connection');
 
 module.exports = {
-    async index(req, res) {
-        const orders = await connection('order').select('*');
+    async index(req, res){
+        const items = await connection('item').select('*');
 
-        return res.json(orders);
+        return res.json(items);
     },
 
     async create(req, res) {
-        const { locale, observation, total, statusId } = req.body;
-   
-        const insert = await connection('order').insert({
-            locale,
-            observation,
-            total,
-            status_id: statusId
+        const { name, value } = req.body;
+
+        const insert = await connection('item').insert({
+            name,
+            photo: '--',
+            value
         });
 
         if(!insert) {       
@@ -27,7 +26,7 @@ module.exports = {
     async delete(req, res) {
         const { id } = req.params;
 
-        await connection('order').where('id', id).delete();
+        await connection('item').where('id', id).delete();
 
         return res.status(204).send();
     }
