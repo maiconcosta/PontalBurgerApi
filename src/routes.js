@@ -4,6 +4,7 @@ const routes = express.Router();
 const IngredientController = require('./controllers/IngredientController');
 const ItemController = require('./controllers/ItemController');
 const OrderController = require('./controllers/OrderController');
+const OrderDetailController = require('./controllers/OrderDetailController');
 const StatusController = require('./controllers/StatusController');
 
 routes.get('/ingredients', IngredientController.index);
@@ -18,6 +19,8 @@ routes.delete('/item/:id', ItemController.delete);
 routes.get('/orders', OrderController.index);
 routes.post('/order', OrderController.create);
 routes.delete('/order/:id', OrderController.delete);
+
+routes.get('/order/:id', OrderDetailController.index);
 
 routes.get('/status', StatusController.index);
 

@@ -1,44 +1,47 @@
-const connection = require('../database/connection');
+const { Ingredient } = require('../models');
 
 module.exports = {
     async index(req, res) {
-        const ingredients = await connection('ingredient').select('*');
-
-        return res.json(ingredients);
+        await Ingredient.findAll()
+            .then((ingredients) => {
+                return res.json(ingredients);
+            }).catch((err) => {
+                return res.status(400).json({ err });
+            });
     },
 
     async create(req, res) {
-        const ingredients = req.body;
-   
-        const insert = await connection('ingredient').insert(ingredients);
-
-        if(!insert) {       
-            return res.status(400).json({ error: 'Failed' });    
-        }
-
-        return res.status(201).json({ success: 'Successfully inserted' });
+        await Ingredient.create(req.body)
+            .then((ingredient) => {
+                return res.status(201).json(ingredient);
+            }).catch((err) => {
+                return res.status(400).json({ err });
+            });
     },
 
     async update(req, res) {
-        const { id } = req.params;
-        const { name } = req.body;
-   
-        const update = await connection('ingredient')
-            .where('id', id)
-            .update({name});
+        const { id } = req.params;  
 
-        if(!update) {       
-            return res.status(400).json({ error: 'Failed' });    
-        }
-
-        return res.status(200).json({ success: 'Successfully updated' });
+        await Ingredient.update(req.body, {
+            where: {
+                id: id
+            }
+        }).then((ingredient) => {
+            return res.status(200).json(ingredient);
+        }).catch((err) => {
+            return res.status(400).json({ err });
+        });       
     },
 
     async delete(req, res) {
         const { id } = req.params;
 
-        await connection('ingredient').where('id', id).delete();
-
-        return res.status(204).send();
+        Ingredient.destroy({
+            where: {
+                id: id
+            }
+        }).then(() => {
+            return res.status(204).send();
+        });
     }
 }

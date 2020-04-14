@@ -1,9 +1,12 @@
-const connection = require('../database/connection');
+const { Status } = require('../models');
 
 module.exports = {
     async index(req, res) {
-        const status = await connection('status').select('*');
-
-        return res.json(status);
+        await Status.findAll()
+            .then((status) => {
+                return res.json(status);
+            }).catch((err) => {
+                return res.status(400).json({ err });
+            });
     }
 }
