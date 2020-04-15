@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       through: 'ItemsOrders',
       as: 'Orders',
       foreignKey: 'ItemId'
+    }),
+
+    Item.belongsTo(models.Categorie, {
+      foreignKey: 'categorieId'
     })
   };
   

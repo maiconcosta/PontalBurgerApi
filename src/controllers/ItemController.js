@@ -1,8 +1,12 @@
-const { Item } = require('../models');
+const { Categorie, Item } = require('../models');
 
 module.exports = {
     async index(req, res) {
-        await Item.findAll()
+        await Item.findAll({
+            include: [              
+                Categorie
+            ]
+        })
             .then((items) => {
                 return res.json(items);
             }).catch((err) => {
