@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
 
     Order.belongsTo(models.Status, {
       foreignKey: 'statusId'
+    }),
+
+    Order.belongsTo(models.Payment, {
+      foreignKey: 'paymentId'
     })
   };
   

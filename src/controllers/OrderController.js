@@ -1,4 +1,4 @@
-const { Item, Order, Status } = require('../models');
+const { Item, Order, Payment, Status } = require('../models');
 
 module.exports = {
     async index(req, res) {
@@ -9,7 +9,8 @@ module.exports = {
                     as: 'items',                   
                     through: { attributes: ['count'] },
                 }, 
-                Status
+                Payment,
+                Status,                
             ],
         }).then((orders) => {
             return res.json(orders);
