@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Item = sequelize.define('Item', {
     name: DataTypes.STRING,
     photo: DataTypes.STRING,
-    value: DataTypes.STRING
+    value: DataTypes.STRING,
+    description: DataTypes.STRING
   }, {});
   Item.associate = function(models) {
     Item.belongsToMany(models.Order, {

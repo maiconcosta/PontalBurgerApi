@@ -6,8 +6,8 @@ module.exports = {
             include: [
                 {
                     model: Item,
-                    as: 'items',
-                    through: { attributes: [] },
+                    as: 'items',                   
+                    through: { attributes: ['count'] },
                 }, 
                 Status
             ],
@@ -24,7 +24,9 @@ module.exports = {
         await Order.create(data)
             .then((order) => {
                 if (items && items.length > 0) {
-                    order.setItems(items);
+                    items.map((item) => {
+                        order.addItem(item.id, { through: { count: item.count }});
+                    });
                 }
 
                 return res.status(201).json(order);
