@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     locale: DataTypes.STRING,
     observation: DataTypes.STRING,
-    total: DataTypes.DECIMAL
+    total: DataTypes.DECIMAL,
+    internalCode: DataTypes.INTEGER(4).ZEROFILL
   }, {});
   Order.associate = function(models) {
     Order.belongsToMany(models.Item, {
