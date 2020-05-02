@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     photo: DataTypes.STRING,
     value: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    salesId: DataTypes.INTEGER(2).ZEROFILL
   }, {});
   Item.associate = function(models) {
     Item.belongsToMany(models.Order, {
