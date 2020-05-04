@@ -7,6 +7,7 @@ const ItemController = require('./controllers/ItemController');
 const OrderController = require('./controllers/OrderController');
 const OrderDetailController = require('./controllers/OrderDetailController');
 const PaymentController = require('./controllers/PaymentController');
+const ReportsController = require('./controllers/ReportsController');
 const StatusController = require('./controllers/StatusController');
 
 routes.get('/ingredients', IngredientController.index);
@@ -29,5 +30,7 @@ routes.get('/status', StatusController.index);
 routes.get('/categories', CategorieController.index);
 
 routes.get('/payments', PaymentController.index);
+
+routes.get('/reports/orders/counts', ReportsController.ordersCount);
 
 module.exports = routes;
