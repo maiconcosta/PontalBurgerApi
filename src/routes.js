@@ -21,6 +21,7 @@ routes.delete('/item/:id', ItemController.delete);
 
 routes.get('/orders', OrderController.index);
 routes.post('/order', OrderController.create);
+routes.put('/order/:id', OrderController.update);
 routes.delete('/order/:id', OrderController.delete);
 
 routes.get('/order/:id', OrderDetailController.index);

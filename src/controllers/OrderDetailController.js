@@ -1,4 +1,4 @@
-const { Item, Order } = require('../models');
+const { Item, Order, Payment, Status } = require('../models');
 
 module.exports = {
     async index(req, res) {
@@ -8,9 +8,11 @@ module.exports = {
             include: [
                 {
                     model: Item,
-                    as: 'Items',
-                    through: { attributes: [] },
+                    as: 'items',
+                    through: { attributes: ['count'] },
                 },
+                Payment,
+                Status,
             ],
             where: {
                 id: id
