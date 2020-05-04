@@ -6,11 +6,11 @@ module.exports = {
             include: [
                 {
                     model: Item,
-                    as: 'items',                   
+                    as: 'items',
                     through: { attributes: ['count'] },
-                }, 
+                },
                 Payment,
-                Status,                
+                Status,
             ],
         }).then((orders) => {
             return res.json(orders);
@@ -26,7 +26,7 @@ module.exports = {
             .then((order) => {
                 if (items && items.length > 0) {
                     items.map((item) => {
-                        order.addItem(item.id, { through: { count: item.count }});
+                        order.addItem(item.id, { through: { count: item.count } });
                     });
                 }
 
@@ -34,6 +34,21 @@ module.exports = {
             }).catch((err) => {
                 return res.status(400).json({ err });
             });
+    },
+
+    async update(req, res) {
+        const { id } = req.params;
+        const { items, ...data } = req.body;
+
+        await Order.update(data, {
+            where: {
+                id: id
+            }
+        }).then((order) => {
+            return res.status(200).json(order);
+        }).catch((err) => {
+            return res.status(400).json({ err });
+        });
     },
 
     async delete(req, res) {
