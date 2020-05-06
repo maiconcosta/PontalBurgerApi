@@ -33,5 +33,6 @@ routes.get('/categories', CategorieController.index);
 routes.get('/payments', PaymentController.index);
 
 routes.get('/reports/orders/counts', ReportsController.ordersCount);
+routes.get('/reports/orders/sevendays/', ReportsController.lastSevenDays);
 
 module.exports = routes;
