@@ -7,6 +7,7 @@ const ItemController = require('./controllers/ItemController');
 const OrderController = require('./controllers/OrderController');
 const OrderDetailController = require('./controllers/OrderDetailController');
 const PaymentController = require('./controllers/PaymentController');
+const RegisterController = require('./controllers/RegisterController');
 const ReportsController = require('./controllers/ReportsController');
 const StatusController = require('./controllers/StatusController');
 
@@ -34,5 +35,7 @@ routes.get('/payments', PaymentController.index);
 
 routes.get('/reports/orders/counts', ReportsController.ordersCount);
 routes.get('/reports/orders/sevendays/', ReportsController.lastSevenDays);
+
+routes.post('/user', RegisterController.create);
 
 module.exports = routes;
