@@ -1,36 +1,36 @@
-const { Categorie, Item } = require('../models');
+const { Categorie, Item } = require('../models')
 
 module.exports = {
-    async index(req, res) {
-        await Item.findAll({
-            include: [              
-                Categorie
-            ]
-        })
-            .then((items) => {
-                return res.json(items);
-            }).catch((err) => {
-                return res.status(400).json(err);
-            });
-    },
+  async index (req, res) {
+    await Item.findAll({
+      include: [
+        Categorie
+      ]
+    })
+      .then((items) => {
+        return res.json(items)
+      }).catch((err) => {
+        return res.status(400).json(err)
+      })
+  },
 
-    async create(req, res) {
-        await Item.create(req.body).then((item) => {
-            return res.status(201).json(item);
-        }).catch((err) => {
-            return res.status(400).json({ err });
-        });
-    },
+  async create (req, res) {
+    await Item.create(req.body).then((item) => {
+      return res.status(201).json(item)
+    }).catch((err) => {
+      return res.status(400).json({ err })
+    })
+  },
 
-    async delete(req, res) {
-        const { id } = req.params;
+  async delete (req, res) {
+    const { id } = req.params
 
-        Item.destroy({
-            where: {
-                id: id
-            }
-        }).then(() => {
-            return res.status(204).send();
-        });
-    }
+    Item.destroy({
+      where: {
+        id: id
+      }
+    }).then(() => {
+      return res.status(204).send()
+    })
+  }
 }

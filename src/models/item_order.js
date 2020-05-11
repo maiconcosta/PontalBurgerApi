@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const ItemsOrders = sequelize.define('ItemsOrders', {
     count: DataTypes.INTEGER
-  }, { freezeTableName: true });
+  }, { freezeTableName: true })
 
-  return ItemsOrders;
-};
+  return ItemsOrders
+}
