@@ -8,6 +8,5 @@ module.exports = {
   dialect: 'mysql',
   dialectOptions: {
     decimalNumbers: true
-  },
-  timezone: '+03:00'
+  }
 }
