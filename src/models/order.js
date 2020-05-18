@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     locale: DataTypes.STRING,
     observation: DataTypes.STRING,
     total: DataTypes.DECIMAL,
-    internalCode: DataTypes.INTEGER(4).ZEROFILL
+    internalCode: DataTypes.INTEGER(4).ZEROFILL,
+    deadline: DataTypes.INTEGER(2)
   }, {})
   Order.associate = function (models) {
     // eslint-disable-next-line no-unused-expressions
