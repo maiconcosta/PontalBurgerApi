@@ -3,6 +3,9 @@ const { Item, Order, Payment, Status } = require('../models')
 module.exports = {
   async index (req, res) {
     await Order.findAll({
+      order: [
+        ['createdAt', 'DESC']
+      ],
       include: [
         {
           model: Item,
